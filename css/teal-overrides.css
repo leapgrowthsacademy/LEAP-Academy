@@ -1,0 +1,30 @@
+:root {
+  --blue: #0f766e;
+  --sky: #d9f4f1;
+  --cyan: #72e0d4;
+  --paper: #f4fbfb;
+  --line: #c8e3e1;
+}
+
+.leap-logo img { width: 206px; height: auto; display: block; }
+.hero-image-wrap img { object-position: center 28%; }
+.hero-image-wrap { background: #dff4f2; }
+.hero-image-note { background: #0f766e; }
+.hero-stat strong, .hero-proof svg, .card-audience, .card-link, .pathway-content h3,
+.outcome-list span, .outcome-list svg, .about-signature, .section-tag { color: #0f766e; }
+.overline-mark, .button--blue, .outcome-callout { background: #0f766e; }
+.button--blue:hover { background: #064e4b; }
+.trust-band, .gap-section, .leap-footer { background: #083f46; }
+.capability span, .method-quote em, .about-image em { color: #72e0d4; }
+.method-visual, .final-cta { background: #d9f4f1; }
+.about-image { background: #c8e9e5; }
+.leap-footer .footer-logo img { width: 218px; max-width: max-content; display: block; background: #fff; padding: 4px 8px;border-radius: 10px;}
+.leap-footer .footer-logo { color: #fff; }
+.nav-call { border-color: #0f766e; }
+.field input:focus, .field textarea:focus { outline-color: #72e0d4; }
+
+@media (max-width: 850px) {
+  .leap-logo img { width: 176px; }
+  .leap-footer .footer-logo img { width: 210px; }
+  .hero-image-wrap { height: 400px; }
+}
