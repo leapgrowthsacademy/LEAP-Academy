@@ -12,10 +12,13 @@
 .hero-image-note { background: #0f766e; }
 .hero-stat strong, .hero-proof svg, .card-audience, .card-link, .pathway-content h3,
 .outcome-list span, .outcome-list svg, .about-signature, .section-tag { color: #0f766e; }
+.enquiry-copy h2 em { color: #72e0d4; }
+.faq-answer[hidden] { display: grid; }
 .overline-mark, .button--blue, .outcome-callout { background: #0f766e; }
 .button--blue:hover { background: #064e4b; }
 .trust-band, .gap-section, .leap-footer { background: #083f46; }
-.capability span, .method-quote em, .about-image em { color: #72e0d4; }
+.capability span { color: #0f766e; }
+.method-quote em, .about-image em { color: #72e0d4; }
 .method-visual, .final-cta { background: #d9f4f1; }
 .about-image { background: #c8e9e5; }
 .leap-footer .footer-logo img { width: 218px; max-width: max-content; display: block; background: #fff; padding: 4px 8px;border-radius: 10px;}

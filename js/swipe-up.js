@@ -3,8 +3,8 @@
     return;
   }
 
-  var HEADING = "h1, h2, .section-tag, .label-kicker, .enquiry-form h3, .pathway-content h3, .pathway-content h4, .capability h3, .method-steps strong, .about-image > span, .outcome-callout strong";
-  var DESCRIPTION = "p, .hero-subtitle, .form-intro, .method-quote, .about-lead, .about-signature, .capability p, .method-steps p, .outcome-list p";
+  var HEADING = "h1, h2, .section-tag, .label-kicker, .enquiry-form h3, .pathway-content h3, .pathway-content h4, .capability h3, .method-steps strong, .about-image > span, .outcome-callout strong, .method-stage-label, .about-subhead";
+  var DESCRIPTION = "p, .hero-subtitle, .form-intro, .method-quote, .about-lead, .about-signature, .about-founder, .capability p, .method-steps p, .outcome-list p, .pathway-note, .gap-close, .gap-support, .method-support, .method-reality, .enquiry-call-note";
   var ACTION = ".hero-actions, .enquiry-actions, .final-cta .button, .card-link, .enquiry-form > .button";
 
   function delayClass(el) {
@@ -26,6 +26,8 @@
     if (el.closest(".capability") && el.matches("span") && !el.matches("p, h3")) return true;
     if (el.matches(".leap-footer > small")) return true;
     if (el.matches("label")) return true;
+    if (el.closest(".challenge-groups")) return true;
+    if (el.closest(".footer-contact")) return true;
     if (el.closest("[hidden]")) return true;
     if (el.closest(".form-success, .form-error")) return true;
     return false;
