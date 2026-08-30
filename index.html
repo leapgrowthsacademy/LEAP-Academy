@@ -436,24 +436,69 @@
                   <div class="challenge-groups" role="group" aria-labelledby="challenge-question">
                     <fieldset class="challenge-group">
                       <legend>For colleges</legend>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Students lack confidence"> Students lack confidence</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Placement readiness"> Placement readiness</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Communication / articulation"> Communication / articulation</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Workplace behaviour"> Workplace behaviour</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Emotional resilience"> Emotional resilience</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Career readiness"> Career readiness</label>
-                      <label class="challenge-option"><input type="checkbox" name="collegeChallenges" value="Other"> Other</label>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-confidence" name="collegeChallenges" value="Students lack confidence">
+                        <label for="college-challenge-confidence">Students lack confidence</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-placement" name="collegeChallenges" value="Placement readiness">
+                        <label for="college-challenge-placement">Placement readiness</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-communication" name="collegeChallenges" value="Communication / articulation">
+                        <label for="college-challenge-communication">Communication / articulation</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-behaviour" name="collegeChallenges" value="Workplace behaviour">
+                        <label for="college-challenge-behaviour">Workplace behaviour</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-resilience" name="collegeChallenges" value="Emotional resilience">
+                        <label for="college-challenge-resilience">Emotional resilience</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-career" name="collegeChallenges" value="Career readiness">
+                        <label for="college-challenge-career">Career readiness</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="college-challenge-other" name="collegeChallenges" value="Other">
+                        <label for="college-challenge-other">Other</label>
+                      </div>
                     </fieldset>
                     <fieldset class="challenge-group">
                       <legend>For HR/L&amp;D:</legend>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Vew-hire readiness"> Vew-hire readiness</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Communication"> Communication</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Collaboration"> Collaboration</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Accountability"> Accountability</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Emotional resilience"> Emotional resilience</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Adaptability"> Adaptability</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Leadership"> Leadership</label>
-                      <label class="challenge-option"><input type="checkbox" name="hrChallenges" value="Other"> Other</label>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-newhire" name="hrChallenges" value="Vew-hire readiness">
+                        <label for="hr-challenge-newhire">Vew-hire readiness</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-communication" name="hrChallenges" value="Communication">
+                        <label for="hr-challenge-communication">Communication</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-collaboration" name="hrChallenges" value="Collaboration">
+                        <label for="hr-challenge-collaboration">Collaboration</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-accountability" name="hrChallenges" value="Accountability">
+                        <label for="hr-challenge-accountability">Accountability</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-resilience" name="hrChallenges" value="Emotional resilience">
+                        <label for="hr-challenge-resilience">Emotional resilience</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-adaptability" name="hrChallenges" value="Adaptability">
+                        <label for="hr-challenge-adaptability">Adaptability</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-leadership" name="hrChallenges" value="Leadership">
+                        <label for="hr-challenge-leadership">Leadership</label>
+                      </div>
+                      <div class="challenge-option">
+                        <input type="checkbox" id="hr-challenge-other" name="hrChallenges" value="Other">
+                        <label for="hr-challenge-other">Other</label>
+                      </div>
                     </fieldset>
                   </div>
                 </div>
@@ -483,7 +528,7 @@
                   </button>
                 </h3>
                 <div data-state="closed" id="faq-answer-1" hidden role="region" aria-labelledby="faq-question-1" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-1">
-                  <p>Placeholder answer: LEAP focuses on practical capability building through practice, feedback, and assessment rather than generic soft-skills lectures. Replace this answer later.</p>
+                  <p>Not in the traditional sense. LEAP focuses on closing the gap between what people know and how they perform in real-world situations. We design structured, practical programs that develop capabilities such as communication, confidence, emotional resilience, adaptability and professional behaviour—with assessment and application built into the learning journey.</p>
                 </div>
               </div>
               <div data-state="closed" data-orientation="vertical" class="border-b" data-testid="faq-item-2">
@@ -493,7 +538,8 @@
                   </button>
                 </h3>
                 <div data-state="closed" id="faq-answer-2" hidden role="region" aria-labelledby="faq-question-2" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-2">
-                  <p>Placeholder answer: C2C-CRP is designed to build workplace readiness, not only placement outcomes. Replace this answer later.</p>
+                  <p>Placement programs help students get opportunities. C2C-CRP helps them become ready for those opportunities.
+                    The program focuses on the capabilities students need to transition from campus to workplace—including communication, confidence, professional behaviour, emotional readiness and career preparedness.</p>
                 </div>
               </div>
               <div data-state="closed" data-orientation="vertical" class="border-b" data-testid="faq-item-3">
@@ -503,7 +549,7 @@
                   </button>
                 </h3>
                 <div data-state="closed" id="faq-answer-3" hidden role="region" aria-labelledby="faq-question-3" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-3">
-                  <p>Placeholder answer: WERP is for startups, HR, and L&amp;D teams building emotional and workplace readiness. Replace this answer later.</p>
+                  <p>WERP is designed for organisations developing young professionals and early-career teams. It helps participants strengthen the human capabilities that influence workplace performance—emotional resilience, communication, collaboration, accountability, adaptability and self-management, especially for freshers.</p>
                 </div>
               </div>
               <div data-state="closed" data-orientation="vertical" class="border-b" data-testid="faq-item-4">
@@ -513,7 +559,8 @@
                   </button>
                 </h3>
                 <div data-state="closed" id="faq-answer-4" hidden role="region" aria-labelledby="faq-question-4" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-4">
-                  <p>Placeholder answer: Yes. Programs are shaped around the specific capability gap being solved. Replace this answer later.</p>
+                  <p>Yes. We don't believe in one-size-fits-all training. We begin by understanding your people, objectives and capability gaps, then adapt the program format, activities and focus areas to your specific context.
+                    The goal is simple: solve your capability gap, not just deliver a training session.</p>
                 </div>
               </div>
               <div data-state="closed" data-orientation="vertical" class="border-b" data-testid="faq-item-5">
@@ -523,17 +570,8 @@
                   </button>
                 </h3>
                 <div data-state="closed" id="faq-answer-5" hidden role="region" aria-labelledby="faq-question-5" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-5">
-                  <p>Placeholder answer: A typical engagement includes diagnosis, a tailored development journey, and assessment of change in action. Replace this answer later.</p>
-                </div>
-              </div>
-              <div data-state="closed" data-orientation="vertical" class="border-b" data-testid="faq-item-6">
-                <h3 data-orientation="vertical" data-state="closed" class="flex">
-                  <button type="button" aria-controls="faq-answer-6" aria-expanded="false" data-state="closed" id="faq-question-6" class="flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left" data-testid="faq-question-6">Is this just another soft-skills workshop?
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-                  </button>
-                </h3>
-                <div data-state="closed" id="faq-answer-6" hidden role="region" aria-labelledby="faq-question-6" class="faq-answer overflow-hidden text-sm" data-testid="faq-answer-6">
-                  <p>Placeholder answer: No. The work starts with the gap and uses realistic practice, not a one-size-fits-all workshop format. Replace this answer later.</p>
+                  <p>Depending on your requirements, an engagement can include needs/capability diagnosis, customised program design, interactive learning sessions, practical application, activities and assessments, participant feedback and outcome review.
+                    Engagements can range from focused pilot sessions to structured, longer-term development programs.</p>
                 </div>
               </div>
             </div>
@@ -549,9 +587,10 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </a>
             <div class="final-cta-note">
-              <p>Let's talk.</p>
-              <p>20-minute</p>
-              <p>No generic pitch. We'll start with your challenge.</p><br>
+              <p class="final-cta-talk">Let's talk.</p>
+              <p class="final-cta-time">20-minute</p>
+              <p class="final-cta-pitch">No generic pitch. We'll start with your challenge.</p>
+              <br><br>
               <p class="final-cta-leap"><em>"Lets make a LEAP from potential to performance"</em></p>
             </div>
           </section>

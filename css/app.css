@@ -1254,20 +1254,32 @@ h1 em,h2 em {
   padding:0 6px
 }
 .challenge-option {
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
+  display:grid;
+  grid-template-columns:16px 1fr;
+  column-gap:8px;
+  align-items:center;
   margin:8px 0;
+  cursor:pointer;
+  user-select:none;
+}
+.challenge-option input[type="checkbox"] {
+  grid-column:1;
+  justify-self:start;
+  margin:0;
+  padding:0;
+  width:16px;
+  height:16px;
+  accent-color:var(--blue)
+}
+.challenge-option label {
+  grid-column:2;
+  display:block;
+  margin:0;
+  padding:0;
+  min-width:0;
   font:400 12px/1.4 'Plus Jakarta Sans',sans-serif;
   color:var(--ink);
   cursor:pointer
-}
-.challenge-option input {
-  width:16px;
-  height:16px;
-  margin-top:2px;
-  flex:none;
-  accent-color:var(--blue)
 }
 .faq-list button svg {
   transition:transform .2s ease
@@ -1294,16 +1306,33 @@ h1 em,h2 em {
   max-width:520px
 }
 .final-cta-note p {
-  margin:0 0 8px;
-  font:500 16px/1.4 'Outfit',sans-serif;
   color:var(--ink)
 }
+.final-cta-talk {
+  font:700 22px/1.2 'Outfit',sans-serif;
+  letter-spacing:-.02em
+}
+.final-cta-time {
+  font:600 18px/1.25 'Outfit',sans-serif;
+  margin-top:14px
+}
+.final-cta-pitch {
+  margin-top:14px;
+  font:italic 500 16px/1.45 'Instrument Serif','Georgia',serif;
+  letter-spacing:.03em
+}
 .final-cta-leap {
-  margin-top:16px
+  margin-top:18px
 }
 .final-cta-leap em {
   font-style:italic;
-  color:var(--ink)
+  font-weight:500;
+  color:var(--ink);
+  background:#e3c34a;
+  padding:.1em .32em;
+  border-radius:0;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone
 }
 .footer-contact {
   min-width:0
