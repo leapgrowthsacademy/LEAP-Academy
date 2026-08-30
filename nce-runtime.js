@@ -29,6 +29,12 @@
     function decodePath(p) { try { return decodeURIComponent(p); } catch (e) { return p; } }
     function isSelfPath(clean) { return decodePath(clean) === currentPath; }
 
+    function isLocalStaticPage(rawHref) {
+        var href = String(rawHref || "").trim();
+        if (!href || /^https?:\/\//i.test(href) || href.indexOf("//") === 0) return false;
+        return /\.html(?:[?#]|$)/i.test(href);
+    }
+
     function buildExportHref(url) {
         var clean = normalizePath(url.pathname);
         if (isSelfPath(clean) && url.hash) {
@@ -47,8 +53,9 @@
 
         a.setAttribute("data-nce-checked", rawHref);
 
-        // Ignore anchors, JS, mailto, tel
+        // Ignore anchors, JS, mailto, tel, and local static pages
         if (rawHref.indexOf("#") === 0 || rawHref.indexOf("javascript:") === 0 || rawHref.indexOf("mailto:") === 0 || rawHref.indexOf("tel:") === 0) return;
+        if (isLocalStaticPage(rawHref)) return;
 
         try {
             // Crucial: Resolve against intended page URL, NOT local filesystem.
@@ -108,7 +115,7 @@
             var a = e.target.closest("a");
             if (!a) return;
             var rawHref = a.getAttribute("href");
-            if (!rawHref || rawHref.indexOf("#") === 0) return;
+            if (!rawHref || rawHref.indexOf("#") === 0 || isLocalStaticPage(rawHref)) return;
 
             // Blackhole neutralized links completely across all interactions
             if (rawHref.indexOf("javascript:void(0)") !== -1) {

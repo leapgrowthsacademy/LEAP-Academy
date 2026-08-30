@@ -140,6 +140,8 @@
 
   function collect(form) {
     return {
+      sheet: "Sheet1",
+      source: "homepage",
       name: valueOf(form, "name"),
       organisation: valueOf(form, "organisation"),
       email: valueOf(form, "email"),
