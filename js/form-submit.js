@@ -2,7 +2,7 @@
 
   function scriptUrl() {
     var config = window.LEAP_CONFIG || {};
-    return config.GOOGLE_SCRIPT_URL || "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+    return config.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzQjYxaPJ9hg0SnCEmDU3WkcxzV9LH8cig1GdjwXIbJBEETlXOQnDfxIG5OgryOO2IB/exec";
   }
 
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -137,7 +137,7 @@
     return (
       GOOGLE_SCRIPT_URL &&
       !GOOGLE_SCRIPT_URL.includes(
-        "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+        "https://script.google.com/macros/s/AKfycbzQjYxaPJ9hg0SnCEmDU3WkcxzV9LH8cig1GdjwXIbJBEETlXOQnDfxIG5OgryOO2IB/exec"
       )
     );
   }
