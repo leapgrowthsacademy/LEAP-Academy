@@ -1,8 +1,27 @@
 (function () {
 
+  var FALLBACK_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwpvOS6jbCGplEcU-6xriKnXHAVcc49937G9dnlMZ-Gj0w5VEPuRr74aBBtRFC-t-RJ/exec";
+
+  function isPlaceholder(url) {
+    var value = String(url || "").trim();
+
+    return (
+      !value ||
+      /paste_your/i.test(value) ||
+      value.indexOf("http") !== 0
+    );
+  }
+
   function scriptUrl() {
     var config = window.LEAP_CONFIG || {};
-    return config.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzQjYxaPJ9hg0SnCEmDU3WkcxzV9LH8cig1GdjwXIbJBEETlXOQnDfxIG5OgryOO2IB/exec";
+    var fromConfig = String(config.GOOGLE_SCRIPT_URL || "").trim();
+
+    if (!isPlaceholder(fromConfig)) {
+      return fromConfig;
+    }
+
+    return FALLBACK_SCRIPT_URL;
   }
 
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -132,13 +151,12 @@
   }
 
   function isConfigured() {
-    const GOOGLE_SCRIPT_URL = scriptUrl();
+    var url = scriptUrl();
 
     return (
-      GOOGLE_SCRIPT_URL &&
-      !GOOGLE_SCRIPT_URL.includes(
-        "https://script.google.com/macros/s/AKfycbzQjYxaPJ9hg0SnCEmDU3WkcxzV9LH8cig1GdjwXIbJBEETlXOQnDfxIG5OgryOO2IB/exec"
-      )
+      !isPlaceholder(url) &&
+      url.indexOf("script.google.com") !== -1 &&
+      url.indexOf("/exec") !== -1
     );
   }
 
@@ -239,7 +257,10 @@
 
         })
 
-        .catch(function () {
+        .catch(function (error) {
+          if (typeof console !== "undefined" && console.error) {
+            console.error("Enquiry submit failed", error);
+          }
 
           showError(
             form,
