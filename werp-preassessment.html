@@ -60,7 +60,7 @@ const A=[
 {n:'Navigating Difficult Conversations',e:'💬',q:['I speak up respectfully even when the topic is uncomfortable.','I can share disagreement without it turning into an argument.','I listen calmly to feedback, even when it is hard to hear.','I address tough conversations early instead of avoiding them.'],
  s:'You handle tough conversations openly and respectfully.',t:'Try a simple structure: describe the situation, share its impact, then ask for the other person\'s view. Begin with a low-stakes conversation.'}
 ];
-let step=-1,name='',email='',phone='',ans=A.map(a=>a.q.map(()=>0));
+let step=-1,fullName='',email='',phone='',ans=A.map(a=>a.q.map(()=>0));
 const $=id=>document.getElementById(id);
 const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const LINKEDIN='https://www.linkedin.com/search/results/companies/?keywords=LEAP%20Growths%20Academy';
@@ -72,6 +72,12 @@ const head='<div class="logo"><img src="'+LOGO+'" alt="LEAP Growths"></div>';
 function lvl(p){return p>=75?['Strength','g']:p>=50?['Solid foundation','b']:['Growth opportunity','o']}
 function pick(i,v){ans[step][i]=v;document.querySelectorAll('[data-q="'+i+'"] .o').forEach(b=>b.classList.toggle('on',+b.dataset.v===v));$('nx').disabled=ans[step].includes(0)}
 function go(d){step+=d;render();window.scrollTo(0,0)}
+function startAssessment(){
+  fullName=document.getElementById('nm').value.trim();
+  email=document.getElementById('em').value.trim();
+  phone=document.getElementById('ph').value.trim();
+  go(1);
+}
 
 async function saveAssessment() {
   const scores = A.map((a, i) => {
@@ -87,7 +93,7 @@ async function saveAssessment() {
   const payload = {
     sheet: 'Sheet4',
     source: 'WERP-Preassessment',
-    name: name,
+    name: fullName,
     email: email,
     phone: phone,
     overallScore: overallScore,
@@ -138,7 +144,7 @@ async function saveAssessment() {
 function render(){
  const app=$('app');
  if(step<0){
-  app.innerHTML=head+'<div class="hero"><div class="tag">WERP Pre-Assessment</div><h1>Workplace Emotional Resilience Check-in</h1><p>A short, simple reflection on the six areas we explore in the Workplace Emotional Resilience Program. There are no right or wrong answers, just your honest experience. It takes about 5 minutes.</p></div><div class="card"><h3>Your details (optional)</h3><input type="text" id="nm" placeholder="Full name" value="'+esc(name)+'"><input type="email" id="em" placeholder="Email address" value="'+esc(email)+'"><input type="tel" id="ph" placeholder="Contact number" value="'+esc(phone)+'"><p>For each statement, choose how often it is true for you at work.<br><b>1 = Never · 2 = Rarely · 3 = Sometimes · 4 = Often · 5 = Always</b></p><div class="nav"><span></span><button class="btn" onclick="name=$(\'nm\').value.trim();email=$(\'em\').value.trim();phone=$(\'ph\').value.trim();go(1)">Start</button></div></div>';
+  app.innerHTML=head+'<div class="hero"><div class="tag">WERP Pre-Assessment</div><h1>Workplace Emotional Resilience Check-in</h1><p>A short, simple reflection on the six areas we explore in the Workplace Emotional Resilience Program. There are no right or wrong answers, just your honest experience. It takes about 5 minutes.</p></div><div class="card"><h3>Your details (optional)</h3><input type="text" id="nm" placeholder="Full name" value="'+esc(fullName)+'"><input type="email" id="em" placeholder="Email address" value="'+esc(email)+'"><input type="tel" id="ph" placeholder="Contact number" value="'+esc(phone)+'"><p>For each statement, choose how often it is true for you at work.<br><b>1 = Never · 2 = Rarely · 3 = Sometimes · 4 = Often · 5 = Always</b></p><div class="nav"><span></span><button class="btn" onclick="startAssessment()">Start</button></div></div>';
   return}
  if(step<6){
   const a=A[step];
@@ -153,7 +159,7 @@ function render(){
  const str=res.filter(r=>r.p>=75);
  const msg=ov>=75?'You are already bringing strong emotional resilience to your work. WERP can help you sharpen it even further.':ov>=50?'You have a solid foundation of emotional resilience. A few focused areas can take you from good to great.':'Taking this check-in is a great first step. Every area below is a skill that can be built with practice, and WERP is designed to help you do exactly that.';
  const det=(email||phone)?'<p style="font-size:12.5px">'+[esc(email),esc(phone)].filter(Boolean).join(' &nbsp;·&nbsp; ')+'</p>':'';
- app.innerHTML=head+'<div class="hero"><div class="tag">Your Personal Report</div><h1>'+(name?esc(name)+', thank you for reflecting!':'Thank you for reflecting!')+'</h1>'+det+'<p>'+msg+'</p><div style="display:flex;align-items:center;gap:14px;margin-top:14px"><div class="score">'+ov+'%</div><div style="font-size:13px;opacity:.9">Overall resilience score<br>across the six WERP areas</div></div></div>'+
+ app.innerHTML=head+'<div class="hero"><div class="tag">Your Personal Report</div><h1>'+(fullName?esc(fullName)+', thank you for reflecting!':'Thank you for reflecting!')+'</h1>'+det+'<p>'+msg+'</p><div style="display:flex;align-items:center;gap:14px;margin-top:14px"><div class="score">'+ov+'%</div><div style="font-size:13px;opacity:.9">Overall resilience score<br>across the six WERP areas</div></div></div>'+
   '<div class="card"><h2>Your snapshot</h2>'+res.map(r=>{const l=lvl(r.p);return '<div class="row"><div class="rh"><span>'+r.e+' '+r.n+'</span><span class="pill '+l[1]+'">'+l[0]+'</span></div><div class="bar"><span class="fill '+l[1]+'" style="width:'+Math.max(r.p,6)+'%"></span></div></div>'}).join('')+'</div>'+
   '<div class="card"><h2>🌱 Your growth focus</h2>'+(foc.length?'<p>These are the areas where a little practice can make the biggest difference for you.</p>'+foc.map(r=>'<div class="focus"><h3>'+r.e+' '+r.n+'</h3><p>'+r.t+'</p></div>').join(''):'<p>You scored strongly across all six areas, which is wonderful. Choose one area to stretch further and share your strengths with your team.</p>')+
   (str.length?'<h3 style="margin-top:16px">✨ Your strengths</h3>'+str.map(r=>'<p>• <b>'+r.n+':</b> '+r.s+'</p>').join(''):'')+'</div>'+
