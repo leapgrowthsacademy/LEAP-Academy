@@ -67,58 +67,70 @@ const LINKEDIN='https://www.linkedin.com/search/results/companies/?keywords=LEAP
 
 // Google Apps Script Web App URL
 // Replace the value below with your deployed Apps Script /exec URL.
-const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxsiOR5hm0eeGQH4ry_EL-kACXd_vGwWTE2Rei7WQM2V1Fua3pXw21aJUtqeB6hoeag/exec';
+const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxs7TQmTwzIXaIZaTXPNdd8kQpKsk01SF-y4kyTQ4TA1Cd4qoB79zHBwNOXIH7vbtHS/exec';
 const head='<div class="logo"><img src="'+LOGO+'" alt="LEAP Growths"></div>';
 function lvl(p){return p>=75?['Strength','g']:p>=50?['Solid foundation','b']:['Growth opportunity','o']}
 function pick(i,v){ans[step][i]=v;document.querySelectorAll('[data-q="'+i+'"] .o').forEach(b=>b.classList.toggle('on',+b.dataset.v===v));$('nx').disabled=ans[step].includes(0)}
 function go(d){step+=d;render();window.scrollTo(0,0)}
 
 async function saveAssessment() {
-  // Calculate each WERP area score (0–100)
   const scores = A.map((a, i) => {
     return Math.round(
       (ans[i].reduce((x, y) => x + y, 0) - 4) / 16 * 100
     );
   });
 
-  // Calculate overall score
   const overallScore = Math.round(
     scores.reduce((x, y) => x + y, 0) / scores.length
   );
 
   const payload = {
+    sheet: 'Sheet4',
+    source: 'WERP-Preassessment',
     name: name,
     email: email,
     phone: phone,
     overallScore: overallScore,
-    scores: scores,
-    answers: ans,
+    managingTriggers: scores[0],
+    handlingSetbacks: scores[1],
+    changeReadiness: scores[2],
+    trustCollaboration: scores[3],
+    composedUnderPressure: scores[4],
+    difficultConversations: scores[5],
+    scores: scores.join(', '),
+    answers: JSON.stringify(ans),
     submittedAt: new Date().toISOString()
   };
 
-  // Do not try to submit until the Apps Script URL has been configured.
-  if (
-    !GOOGLE_SCRIPT_URL ||
-    GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxsiOR5hm0eeGQH4ry_EL-kACXd_vGwWTE2Rei7WQM2V1Fua3pXw21aJUtqeB6hoeag/exec'
-  ) {
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('http') !== 0) {
     console.warn('Google Sheets connection is not configured yet.');
     return;
   }
 
   try {
-    // text/plain avoids a CORS preflight with the Apps Script Web App.
-    await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
+      redirect: 'follow',
       headers: {
         'Content-Type': 'text/plain;charset=utf-8'
       },
       body: JSON.stringify(payload)
     });
 
+    const text = await response.text();
+    let result = {};
+    try {
+      result = text ? JSON.parse(text) : {};
+    } catch (parseError) {
+      result = {};
+    }
+
+    if (!response.ok || result.result === 'error') {
+      throw new Error(result.message || 'submit-failed');
+    }
+
     console.log('WERP assessment submitted to Google Sheets.');
   } catch (error) {
-    // The report should still be shown even if the network request fails.
     console.error('WERP Google Sheets submission failed:', error);
   }
 }
