@@ -67,7 +67,7 @@ const LINKEDIN='https://www.linkedin.com/search/results/companies/?keywords=LEAP
 
 // Google Apps Script Web App URL
 // Replace the value below with your deployed Apps Script /exec URL.
-const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzyy7bucMMfd9HxdSQedTFeSlMDfzK5nR6k9Uq3OAKh0KcKqAEC_SOEY5wKULR5J8cK/exec';
+const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxsiOR5hm0eeGQH4ry_EL-kACXd_vGwWTE2Rei7WQM2V1Fua3pXw21aJUtqeB6hoeag/exec';
 const head='<div class="logo"><img src="'+LOGO+'" alt="LEAP Growths"></div>';
 function lvl(p){return p>=75?['Strength','g']:p>=50?['Solid foundation','b']:['Growth opportunity','o']}
 function pick(i,v){ans[step][i]=v;document.querySelectorAll('[data-q="'+i+'"] .o').forEach(b=>b.classList.toggle('on',+b.dataset.v===v));$('nx').disabled=ans[step].includes(0)}
@@ -99,7 +99,7 @@ async function saveAssessment() {
   // Do not try to submit until the Apps Script URL has been configured.
   if (
     !GOOGLE_SCRIPT_URL ||
-    GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzyy7bucMMfd9HxdSQedTFeSlMDfzK5nR6k9Uq3OAKh0KcKqAEC_SOEY5wKULR5J8cK/exec'
+    GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxsiOR5hm0eeGQH4ry_EL-kACXd_vGwWTE2Rei7WQM2V1Fua3pXw21aJUtqeB6hoeag/exec'
   ) {
     console.warn('Google Sheets connection is not configured yet.');
     return;
